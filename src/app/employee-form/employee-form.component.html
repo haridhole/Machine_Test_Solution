@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Add New Employee</h2>
+    <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+          <div class="form-group">
+
+            <!-- <input type="hidden" name="id" #id="ngModel" [(ngModel)]="selectedEmployee.id"> -->
+
+            <label for="name">Name</label>
+            <input #name="ngModel" [(ngModel)]="selectedEmployee.name" name="name" id="name" type="text" class="form-control" required minlength="4">
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                <div *ngIf="name.errors.required">Name is required.</div>
+                <div *ngIf="name.errors.minlength">Name should have atleast 4 characters.</div>
+              </div>
+          </div>        
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <div class="input-group">
+              <span class="input-group-addon">+91</span>
+              <input #phone="ngModel" [(ngModel)]="selectedEmployee.phone" name="phone" id="phone" type="number" class="form-control" required [min]="0">
+            </div>
+            <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+              <div *ngIf="phone.errors.required">Phone is required.</div>
+              <div *ngIf="phone.errors.min">Phone should be 0 or higher.</div>
+            </div>
+          </div>    
+          
+<div #address="ngModelGroup" ngModelGroup="address" name="address">
+
+     <div class="form-group">
+        <label for="city">City</label>
+        <input #city="ngModel" [(ngModel)]="selectedEmployee.address.city" name="city" id="city" type="text" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address_line1">Address 1</label>
+        <input #address_line1="ngModel" [(ngModel)]="selectedEmployee.address.address_line1" name="address_line1" id="address_line1" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="address_line2">Address 2</label>
+        <input #address_line2="ngModel" [(ngModel)]="selectedEmployee.address.address_line2" name="address_line2" id="address_line2" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="postal_code">Postal Code</label>
+        <input #postal_code="ngModel" [(ngModel)]="selectedEmployee.address.postal_code" name="postal_code" id="postal_code" type="text" class="form-control">
+      </div>
+ </div>
+       
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Save</button>
+          <!-- <button type="button" class="btn btn-danger" (click)="delete()">Delete</button> -->
+        </form>    
+    </div>
+
+  </div>
+  

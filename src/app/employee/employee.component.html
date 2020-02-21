@@ -1,0 +1,40 @@
+
+<div class="container">
+  <a routerLink="/employees/add" class="btn btn-primary" >Add New Employee</a><br><br>
+
+  <p><input #query (keyup)="employeeService.filter(query.value)" type="text" class="form-control" placeholder="Search with Name">
+  </p>    
+
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>City</th>
+          <th>Address 1</th>
+          <th>Address 2</th>
+          <th>Postal Code</th>
+          <th>Edit</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employeeService.employees e">
+          <td>{{emp.id}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.phone}}</td>
+          <td>{{emp.address.city}}</td>
+          <td>{{emp.address.address_line1}}</td>
+          <td>{{emp.address.address_line1}}</td>
+          <td>{{emp.address.postal_code}}</td>
+          <td>
+            <a [routerLink]="['/employees/',emp.id]" class="action-btn" (click)="onEdit(emp)">
+                <i class="material-icons">edit</i>
+              </a>
+          </td>
+        </tr>
+    
+      </tbody>
+    </table>
+  </div>
